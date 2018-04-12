@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.canvas.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+   <children>
+      <Canvas fx:id="canvas" height="600.0" width="675.0" />
+      <AnchorPane prefHeight="600.0" prefWidth="352.0">
+         <children>
+            <Label layoutX="124.0" layoutY="-1.0" prefHeight="30.0" prefWidth="112.0" text="Control &amp; info" textAlignment="CENTER">
+               <font>
+                  <Font size="17.0" />
+               </font></Label>
+            <VBox layoutX="47.0" layoutY="62.0" prefHeight="149.0" prefWidth="136.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="25.0" prefWidth="219.0" text="Elevator 1" textAlignment="CENTER" />
+                  <HBox>
+                     <children>
+                        <Label text="Floor:" />
+                        <Label fx:id="floor1" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label text="Direction:" />
+                        <Label fx:id="direction1" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label text="People in:" />
+                        <Label fx:id="peopleIn1" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label alignment="CENTER" text="Capacity:" textAlignment="CENTER" />
+                        <Label fx:id="capacity1" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <Label layoutX="166.0" layoutY="351.0" prefHeight="25.0" prefWidth="33.0" text="Mode" />
+            <RadioButton fx:id="handleRB" layoutX="108.0" layoutY="384.0" mnemonicParsing="false" text="Handle">
+               <toggleGroup>
+                  <ToggleGroup fx:id="mode" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="autoRB" layoutX="192.0" layoutY="384.0" mnemonicParsing="false" selected="true" text="Auto" toggleGroup="$mode" />
+            <Label layoutX="155.0" layoutY="426.0" text="Add person" />
+            <HBox alignment="CENTER" layoutX="14.0" layoutY="469.0">
+               <children>
+                  <Label alignment="CENTER" layoutX="14.0" layoutY="473.0" text="Start floor:" textAlignment="CENTER" />
+                  <ChoiceBox fx:id="startFloor" prefHeight="25.0" prefWidth="52.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="192.0" layoutY="469.0">
+               <children>
+                  <Label layoutX="192.0" layoutY="473.0" text="Desired floor:" />
+                  <ChoiceBox fx:id="desiredFloor" prefHeight="25.0" prefWidth="51.0" />
+               </children>
+            </HBox>
+            <Button fx:id="add" layoutX="156.0" layoutY="530.0" mnemonicParsing="false" text="Add" />
+            <VBox layoutX="183.0" layoutY="62.0" prefHeight="149.0" prefWidth="136.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="25.0" prefWidth="219.0" text="Elevator 2" textAlignment="CENTER" />
+                  <HBox>
+                     <children>
+                        <Label text="Floor:" />
+                        <Label fx:id="floor2" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label text="Direction:" />
+                        <Label fx:id="direction2" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label text="People in:" />
+                        <Label fx:id="peopleIn2" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label text="Capacity:" />
+                        <Label fx:id="capacity2" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <Separator layoutY="-1.0" orientation="VERTICAL" prefHeight="600.0" />
+            <Separator layoutX="180.0" layoutY="62.0" orientation="VERTICAL" prefHeight="149.0" />
+            <Separator layoutY="348.0" prefWidth="349.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</HBox>
