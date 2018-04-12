@@ -95,7 +95,6 @@ public class Home {
                 Man man = it.next();
 
                 // если лифт стоит на том же месте, где и человек, и едет по его пути или просто стоит, то добавляем
-                // в стоячий лифт садятся разные люди
                 if (man.getStartFloor() == floor){
                     if (man.getDirection() == direction){
                         peopleToElevator.add(man);
@@ -108,14 +107,6 @@ public class Home {
                         it.remove();
                     }
                 }
-                /*
-                if ((man.getStartFloor() == ev.getCurrentFloor())
-                        && ((man.getDirection() == ev.getDirection()) || (ev.getDirection() == ElevatorDirection.HOLD))
-                        && (!ev.isFull())) {
-                    ev.addMan(man);
-                    it.remove();
-//                        System.out.println(man.getId() + " added!");
-                }*/
             }
             return peopleToElevator;
         }

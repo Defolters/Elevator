@@ -3,5 +3,6 @@ public enum ElevatorStatus {
     GOINGTOMOVE,
     DOORSCLOSING,
     MOVING,
-    DOORSOPENING
+    DOORSOPENING,
+    PEOPLEREMOVING
 }

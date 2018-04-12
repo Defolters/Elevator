@@ -21,13 +21,17 @@ public class PeopleManager implements Runnable {
         while(wished == start){
             wished = rand.nextInt(numberOfFloors) + 1;
         }
-
         Man man = new Man(lastId, start, wished);
+        System.out.println(man);
         home.addMan(man);
         lastId++;
     }
 
     public void addMan(int start, int desired){
+        if (start == desired){
+            return;
+        }
+
         Man man = new Man(lastId, start, desired);
         home.addMan(man);
         lastId++;

@@ -21,6 +21,7 @@ public class Controller implements Initializable{
     public ChoiceBox<Integer> startFloor;
     @FXML
     public ChoiceBox<Integer> desiredFloor;
+
     @FXML
     public Label floor1;
     @FXML
@@ -30,6 +31,9 @@ public class Controller implements Initializable{
     @FXML
     public Label capacity1;
     @FXML
+    public Label status1;
+
+    @FXML
     public Label floor2;
     @FXML
     public Label direction2;
@@ -38,14 +42,17 @@ public class Controller implements Initializable{
     @FXML
     public Label capacity2;
     @FXML
+    public Label status2;
+
+    @FXML
     public Canvas canvas;
 
     private Home home;
 
     private GraphicsContext graphCon;
 
-    Image image;
-    Image imageMan;
+    private Image image;
+    private Image imageMan;
 
 //    int x = 400;
     int y = 0;
@@ -54,7 +61,6 @@ public class Controller implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-//        lmuParser = new LMUParser();
         startFloor.getItems().addAll(1,2,3,4,5);
         startFloor.setValue(1);
 
@@ -66,15 +72,12 @@ public class Controller implements Initializable{
         image = new Image("elevator.png", 120,120,false,false);
         imageMan = new Image("man2.png", 35,80,false,false);
 
-        add.setOnAction(e -> {
-            home.addMan(startFloor.getValue(), desiredFloor.getValue());
-        });
+        add.setOnAction(e -> home.addMan(startFloor.getValue(), desiredFloor.getValue()));
     }
 
 //    @FXML
     public void addMan(){
         System.out.println(startFloor.getValue() +" "+ desiredFloor.getValue());
-        // add man
     }
 
     public void addHome(Home home){
@@ -96,11 +99,13 @@ public class Controller implements Initializable{
         direction1.setText(ev1.getDirection().toString());
         peopleIn1.setText(Integer.toString(ev1.getOccupancy()));
         capacity1.setText(Integer.toString(ev1.getCapacity()));
+        status1.setText(ev1.getStatus().toString());
 
         floor2.setText(Integer.toString(ev2.getCurrentFloor()));
         direction2.setText(ev2.getDirection().toString());
         peopleIn2.setText(Integer.toString(ev2.getOccupancy()));
         capacity2.setText(Integer.toString(ev2.getCapacity()));
+        status2.setText(ev2.getStatus().toString());
 
         graphCon.drawImage(image, ev1.getX(),ev1.getY());
 //        System.out.println("ELEVATOR getY: " + ev1.getY());
@@ -110,7 +115,7 @@ public class Controller implements Initializable{
         int i = 0;
         // если лифт двигается, людей можно не рисовать?
         for(Man man : ev1.getPeopleInElevator()){
-            graphCon.drawImage(imageMan, ev1.getX()+15+15*i, man.y);//480-120*(ev1.getCurrentFloor()-1) + 40);
+            graphCon.drawImage(imageMan, ev1.getX()+15*i, man.y);//480-120*(ev1.getCurrentFloor()-1) + 40);
             i++;
         }
         // draw door (5 states)
@@ -121,7 +126,7 @@ public class Controller implements Initializable{
         i = 0;
         // если лифт двигается, людей можно не рисовать?
         for(Man man : ev2.getPeopleInElevator()){
-            graphCon.drawImage(imageMan, ev2.getX()+15+15*i, man.y);//480-120*(ev2.getCurrentFloor()-1) + 40);
+            graphCon.drawImage(imageMan, ev2.getX()+15*i, man.y);//480-120*(ev2.getCurrentFloor()-1) + 40);
             i++;
         }
         // draw door (5 states)

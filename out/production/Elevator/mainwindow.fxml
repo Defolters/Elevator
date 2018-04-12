@@ -44,6 +44,12 @@
                         <Label fx:id="capacity1" />
                      </children>
                   </HBox>
+                  <HBox>
+                     <children>
+                        <Label text="Status:" />
+                        <Label fx:id="status1" />
+                     </children>
+                  </HBox>
                </children>
             </VBox>
             <Label layoutX="166.0" layoutY="351.0" prefHeight="25.0" prefWidth="33.0" text="Mode" />
@@ -92,6 +98,12 @@
                      <children>
                         <Label text="Capacity:" />
                         <Label fx:id="capacity2" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label text="Status:" />
+                        <Label fx:id="status2" />
                      </children>
                   </HBox>
                </children>

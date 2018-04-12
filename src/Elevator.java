@@ -18,9 +18,10 @@ public class Elevator {
     private double goingToMoveTime;
     private int doorStatus; // 0 - open, 1,2,3,4 - closed
 
-    ElevatorDirection direction;
-    ArrayList<Man> peopleInElevator;
-    HashSet<Integer> directions;
+    private ElevatorStatus status;
+    private ElevatorDirection direction;
+    private ArrayList<Man> peopleInElevator;
+    private HashSet<Integer> directions;
 
     Elevator(int capacity, int numberOfFloors, int id, int x){
         peopleInElevator = new ArrayList<>();
@@ -30,6 +31,7 @@ public class Elevator {
         this.occupancy = 0;
         this.currentFloor = 1;
         this.direction = ElevatorDirection.HOLD;
+        this.status = ElevatorStatus.HOLDING;
         this.numberOfFloors = numberOfFloors;
         this.id = id;
         this.x = x;
@@ -37,34 +39,46 @@ public class Elevator {
         this.doorStatus = 0;
     }
 
-    //void
-    //void setDirection(){}
+    void addDirection(int floor, ElevatorDirection direction){
+        // поставить ближний
+//        for (Integer integer : directions){
+//            if (Math.abs(currentFloor-floor) < Math.abs(currentFloor - integer)){
+//                directions.clear();
+//                directions.add(floor);
+//            }
+//        }
 
-    void addDirection(int floor){
         directions.add(floor);
-
         System.out.println("DIRECTIONSSSSS " + id + " " + directions);
 
         if (floor > currentFloor){
-            direction = ElevatorDirection.UP;
+            this.direction = ElevatorDirection.UP;
         }
         else{
-            direction = ElevatorDirection.DOWN;
+            this.direction = ElevatorDirection.DOWN;
         }
 
-        if (!moving){
-            if (!goingToMove){
-                goingToMove = true;
+        /*if (status == ElevatorStatus.HOLDING){
+            status = ElevatorStatus.DOORSCLOSING;
+        }*/
+        // если лифт стоит
 
-                final long start = System.nanoTime() / 1000000; //ms
-                goingToMoveTime = start/1000; //seconds
-            }
+        if (status == ElevatorStatus.HOLDING){
+//            status = ElevatorStatus.GOINGTOMOVE;
+            status = ElevatorStatus.MOVING;
+            final long start = System.nanoTime() / 1000000; //ms
+            goingToMoveTime = start/1000; //seconds
+            System.out.println("Going to move holding time:" + goingToMoveTime + "s");
         }
 
+        // если лифт двигается
+        // ничего?
     }
 
     void addMan(Man man){
-        man.x = this.x;
+        man.x = this.x+15;
+        man.y = this.y+40;
+
         peopleInElevator.add(man);
 
         if (man.getDesiredFloor() > currentFloor){
@@ -74,11 +88,15 @@ public class Elevator {
             direction = ElevatorDirection.DOWN;
         }
 
-        if (!goingToMove){
-            goingToMove = true;
-
+        // если лифт просто стоит (в другие состояния мы не должны добавлять людей)
+        if (!(status == ElevatorStatus.GOINGTOMOVE)){
+//            goingToMove = true;
+//            status = ElevatorStatus.GOINGTOMOVE;
+            status = ElevatorStatus.MOVING;
             final long start = System.nanoTime() / 1000000; //ms
             goingToMoveTime = start/1000; //seconds
+
+            System.out.println("Going to move adding time:" + goingToMoveTime + "s");
         }
 
         //moving=true;
@@ -87,143 +105,154 @@ public class Elevator {
     }
 
     ArrayList<Man> updatePosition(){
-        // если мы собираемся ехать и время ожидания не прошло, то ждем
-        // если время прошло, то собираемся ехать
-        if (goingToMove){
+
+        // if elevator is holding, we do nothing
+        if (status == ElevatorStatus.HOLDING){
+            return new ArrayList<>();
+        }
+        // if elevator going to move, we wait for some time
+        if (status == ElevatorStatus.GOINGTOMOVE){
+
             final long end = System.nanoTime() / 1000000; //ms
             double time = end/1000; //seconds
-            goingToMoveTime = end/1000; //seconds
-            if (true){//((end/1000 - goingToMoveTime) > 3){
-                goingToMove = false;
-                doorsClosing = true;
+
+            // если время ожидания прошло, то закрыываем двери
+            if ((time-goingToMoveTime) > 1.3){
+//                status = ElevatorStatus.DOORSCLOSING;
+                status = ElevatorStatus.MOVING;
             }
+            // else return
             else{
                 return new ArrayList<>();
             }
-        }
 
-        // если лифт стоит, то из него никто не выходит и он не двигается.
-        if (direction == ElevatorDirection.HOLD){
-            return new ArrayList<>();
         }
-
-        // если состояние закрытия дверей, то закрываем двери и выходим из функции
-        // если двери закрылись, то продолжаем работу, перемещаем лифт
-        if (doorsClosing){
+        // if elevator closing doors, we close doors
+        if (status == ElevatorStatus.DOORSCLOSING){
+            // if doors are not closed, close it
             if (doorStatus<4){
                 doorStatus++;
                 return new ArrayList<>();
             }
-            doorsClosing = false;
-            moving = true;
+            // if doors closed, we are moving
+            status = ElevatorStatus.MOVING;
         }
 
-        // открытие дверей
-        if (doorsOpening){
-            if (doorStatus>0){
-                doorStatus--;
-                return new ArrayList<>();
+        //if elevator moving, we move elevator
+        if (status == ElevatorStatus.MOVING){
+            if (((direction == ElevatorDirection.UP) && (currentFloor == 5)) || ((direction == ElevatorDirection.DOWN) && (currentFloor == 1))){
+                System.out.println("FFFFFFFFFFFFFFFFFFFF");
+                direction = ElevatorDirection.HOLD;
+                status = ElevatorStatus.HOLDING;
             }
-            doorsOpening = false;
-        }
-
-        // двигаем лифт если moving, пока он не y%120 == 0
-        if(moving){
 
             if ((direction == ElevatorDirection.UP)){
-                this.y-=2;
+//                this.y-=2;
+                this.y-=120;
             }
             else if ((direction == ElevatorDirection.DOWN)){
-                this.y+=2;
+//                this.y+=2;
+                this.y+=120;
             }
 
+            // move people in elevator with elevator
             for(Man man : peopleInElevator){
-                man.y = this.y;
+                man.y = this.y+40;
             }
 
-            // если лифт на каком-то этаже, то нужно проверить, нужно ли нам останавливаться на этом этаже
+            // if we reach some floor
             if (y % 120 == 0){
-                moving = false;
+                // move elevator
                 if ((direction == ElevatorDirection.UP)){
                     currentFloor++;
-//            dist+=120;
                 }
                 else if ((direction == ElevatorDirection.DOWN)){
                     currentFloor--;
-//            dist+=120;
+                }
+
+                // check if we should stop
+                boolean needOut = false;
+                for (Man man : peopleInElevator){
+                    if (man.getDesiredFloor() == currentFloor){
+                        needOut = true;
+                        break;
+                    }
+                }
+                // if some people want to get into elevator
+                for (Integer floor : directions){
+                    if (floor == currentFloor){
+                        directions.remove(currentFloor);
+                        needOut = true;
+                        break;
+                    }
+                }
+                directions.clear();
+                if (peopleInElevator.isEmpty()){
+                    status = ElevatorStatus.HOLDING;
+                    direction = ElevatorDirection.HOLD;
+                }
+
+                // if we should stop, stop moving and open doors
+                if (needOut){
+//                    status = ElevatorStatus.DOORSOPENING;
+                    status = ElevatorStatus.PEOPLEREMOVING;
+//                    direction = ElevatorDirection.HOLD;
+                }
+                // else continue to move
+                else{
+                    return new ArrayList<>();
                 }
             }
+            // else continue to move
             else{
                 return new ArrayList<>();
             }
         }
 
-        // проверка, что мы не уехали на крышу?
-        // изменили этаж
-        // дважды может выполниться это
-//        if ((direction == ElevatorDirection.UP)){
-//            currentFloor++;
-////            dist+=120;
-//        }
-//        else if ((direction == ElevatorDirection.DOWN)){
-//            currentFloor--;
-////            dist+=120;
-//        }
-
-        // остановится и начать открывать двери в том случае, если нужно убрать человека или забрать
-        // (сделать так, чтобы люди не могли сесть, пока двери не открылись)
-        boolean needOut = false;
-        for (Man man : peopleInElevator){
-            if (man.getDesiredFloor() == currentFloor){
-                needOut = true;
-                break;
+        //
+        if (status == ElevatorStatus.DOORSOPENING){
+            // if doors are not open, open it
+            if (doorStatus>0){
+                doorStatus--;
+                return new ArrayList<>();
             }
+            // if doors opened, we can remove people
+            status = ElevatorStatus.PEOPLEREMOVING;
         }
 
-        for (Integer floor : directions){
-            if (floor == currentFloor){
-                needOut = true;
-                break;
+        //
+        if (status == ElevatorStatus.PEOPLEREMOVING){
+            // remove people, if any going, if no, holding
+            ArrayList<Man> peopleOut = new ArrayList<>();
+
+            // если кому-то нужно выходить, переносим в другой список
+            Iterator<Man> iterator = peopleInElevator.iterator();
+            while (iterator.hasNext()) {
+                Man man = iterator.next();
+                if(man.getDesiredFloor() == currentFloor){
+                    peopleOut.add(man);
+                    iterator.remove();
+                    System.out.println();
+                    System.out.println(man.getId() + " removed!");
+                    occupancy--;
+                }
             }
-        }
 
-        if (needOut){
-            doorsOpening = true;
-        }
-        else{
-            moving=true;
-            return new ArrayList<>();
-        }
-
-        // если двери еще не открылись, не продолжать
-        if (doorStatus != 0){
-            return new ArrayList<>();
-        }
-
-        //System.out.println("Elevator:" + id + " Current floor: " + currentFloor);
-        ArrayList<Man> peopleOut = new ArrayList<>();
-        // если кому-то нужно выходить (убираем из списка)
-        Iterator<Man> iterator = peopleInElevator.iterator();
-        while (iterator.hasNext()) {
-            Man man = iterator.next();
-            if(man.getDesiredFloor() == currentFloor){
-                peopleOut.add(man);
-                iterator.remove();
-                System.out.println();
-                System.out.println(man.getId() + " removed!");
-                occupancy--;
+            // if elevator is empty, set holding
+            if (peopleInElevator.isEmpty()){
+                status = ElevatorStatus.HOLDING;
+                direction = ElevatorDirection.HOLD;
             }
+            // if not empty, elevator going to continue its path
+            else{
+//                status = ElevatorStatus.GOINGTOMOVE;
+                status = ElevatorStatus.MOVING;
+            }
+
+            return peopleOut;
         }
 
-        // проверка направления (направления используются для того, чтобы мы ехали куда-то, когда мы стоим)
-        directions.remove(currentFloor);
-        //System.out.println(directions);
-
-        if (peopleInElevator.isEmpty() && directions.isEmpty()){
-            direction = ElevatorDirection.HOLD;
-        }
-//        directions.clear();
-        return peopleOut;
+        return new ArrayList<>();
     }
 
     public int getCurrentFloor() {
@@ -252,6 +281,10 @@ public class Elevator {
 
     public ElevatorDirection getDirection() {
         return direction;
+    }
+
+    public ElevatorStatus getStatus() {
+        return status;
     }
 
     public int getId() {
@@ -313,5 +346,9 @@ public class Elevator {
 
     public boolean isMoving() {
         return moving;
+    }
+
+    boolean isMovingToFloor(int floor){
+        return directions.contains(floor);
     }
 }
