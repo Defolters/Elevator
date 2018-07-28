@@ -35,9 +35,12 @@ public class ElevatorManager implements Runnable {
 
             // можем посадить человека, если лифт стоит или собирается ехать
             for (Elevator ev : home.getElevators()){
-                if(!( (ev.getStatus() == ElevatorStatus.HOLDING) || (ev.getStatus() == ElevatorStatus.GOINGTOMOVE) )){
+                /*if(!( (ev.getStatus() == ElevatorStatus.HOLDING) || (ev.getStatus() == ElevatorStatus.GOINGTOMOVE) )){
                     continue;
-                }
+                }*/
+                /*if (ev.getDirection() == ElevatorDirection.HOLD){
+                    break;
+                }*/
 
                 ArrayList<Man> peopleToElevator = home.getPeople(ev.getCurrentFloor(), ev.getDirection(), ev.getCapacity()-ev.getOccupancy());
 
@@ -88,7 +91,7 @@ public class ElevatorManager implements Runnable {
             }
 
             try{
-                Thread.sleep(1500);
+                Thread.sleep(1000);
             }
             catch(InterruptedException ex){
                 return;

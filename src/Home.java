@@ -124,12 +124,6 @@ public class Home {
         synchronized (peopleIn){
             peopleIn.add(man);
         }
-        /*synchronized (people){
-
-            people.add(man);
-            System.out.println("New Man! Size: " + people.size());
-            System.out.println("Start: " + man.getStartFloor() + " Desired: " + man.getDesiredFloor());
-        }*/
     }
 
     public void addMan(int start, int desired){
@@ -137,12 +131,6 @@ public class Home {
             Man man = new Man(0, start, desired);
             peopleIn.add(man);
         }
-        /*synchronized (people){
-            Man man = new Man(0, start, desired);
-            people.add(man);
-            System.out.println("New Man! Size: " + people.size());
-            System.out.println("Start: " + man.getStartFloor() + " Desired: " + man.getDesiredFloor());
-        }*/
     }
 
     public void addPeopleOut(ArrayList<Man> peopleOut){

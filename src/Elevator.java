@@ -107,9 +107,11 @@ public class Elevator {
     ArrayList<Man> updatePosition(){
 
         // if elevator is holding, we do nothing
-        if (status == ElevatorStatus.HOLDING){
+        /*if (status == ElevatorStatus.HOLDING){
             return new ArrayList<>();
-        }
+        }*/
+
+        /*
         // if elevator going to move, we wait for some time
         if (status == ElevatorStatus.GOINGTOMOVE){
 
@@ -250,9 +252,57 @@ public class Elevator {
             }
 
             return peopleOut;
+        }*/
+
+        if(direction == ElevatorDirection.HOLD){
+            return new ArrayList<>();
         }
 
-        return new ArrayList<>();
+        if (((direction == ElevatorDirection.UP) && (currentFloor == 5)) || ((direction == ElevatorDirection.DOWN) && (currentFloor == 1))){
+            System.out.println("FFFFFFFFFFFFFFFFFFFF");
+            direction = ElevatorDirection.HOLD;
+            status = ElevatorStatus.HOLDING;
+        }
+
+        if ((direction == ElevatorDirection.UP)){
+            currentFloor++;
+            this.y-=120;
+        }
+        else if ((direction == ElevatorDirection.DOWN)){
+            currentFloor--;
+            this.y+=120;
+        }
+
+        for(Man man : peopleInElevator){
+            man.y = this.y+40;
+        }
+
+        ArrayList<Man> peopleOut = new ArrayList<>();
+        // если кому-то нужно выходить (убираем из списка)
+        Iterator<Man> iterator = peopleInElevator.iterator();
+        while (iterator.hasNext()) {
+            Man man = iterator.next();
+            if(man.getDesiredFloor() == currentFloor){
+                peopleOut.add(man);
+                iterator.remove();
+                System.out.println();
+                System.out.println(man.getId() + " removed!");
+                occupancy--;
+            }
+        }
+
+        directions.remove(currentFloor);
+        //System.out.println(directions);
+
+        if (peopleInElevator.isEmpty() && directions.isEmpty()){
+            direction = ElevatorDirection.HOLD;
+        }
+//        directions.clear();
+        return peopleOut;
+
+
+
+//        return new ArrayList<>();
     }
 
     public int getCurrentFloor() {

@@ -54,10 +54,6 @@ public class Controller implements Initializable{
     private Image image;
     private Image imageMan;
 
-//    int x = 400;
-    int y = 0;
-//    int x2 = 565; // 675
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -135,8 +131,8 @@ public class Controller implements Initializable{
 
         i = 0;
         for(Man man : home.getPeople()){
-            System.out.println("Waiting:");
-            System.out.println(man);
+//            System.out.println("Waiting:");
+//            System.out.println(man);
 
             graphCon.drawImage(imageMan, man.x-i, 480-120*(man.getStartFloor()-1) + 40);
             i+=10;
