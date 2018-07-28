@@ -9,7 +9,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 
-import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -65,8 +64,8 @@ public class Controller implements Initializable{
 
         graphCon = canvas.getGraphicsContext2D();
 
-        image = new Image("elevator.png", 120,120,false,false);
-        imageMan = new Image("man2.png", 35,80,false,false);
+        image = new Image("img/elevator.png", 120,120,false,false);
+        imageMan = new Image("img/man2.png", 35,80,false,false);
 
         add.setOnAction(e -> home.addMan(startFloor.getValue(), desiredFloor.getValue()));
     }

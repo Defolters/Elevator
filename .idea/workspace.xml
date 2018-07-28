@@ -7,19 +7,16 @@
     <list default="true" id="a0f0f7df-1bde-4610-9615-52c8870e0ca3" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/out/production/Elevator/Controller.class" afterPath="$PROJECT_DIR$/out/production/Elevator/Controller.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/Elevator/Elevator.class" afterPath="$PROJECT_DIR$/out/production/Elevator/Elevator.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/Elevator/ElevatorManager.class" afterPath="$PROJECT_DIR$/out/production/Elevator/ElevatorManager.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/Elevator/Home.class" afterPath="$PROJECT_DIR$/out/production/Elevator/Home.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/Elevator/MainFX$1.class" afterPath="$PROJECT_DIR$/out/production/Elevator/MainFX$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/Elevator/MainFX.class" afterPath="$PROJECT_DIR$/out/production/Elevator/MainFX.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/Elevator/horse.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Elevator/SpriteAnimation.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Elevator/elevator.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Elevator/man.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Elevator/man2.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Elevator/manwalk.png" afterPath="" />
       <change beforePath="$PROJECT_DIR$/src/Controller.java" afterPath="$PROJECT_DIR$/src/Controller.java" />
-      <change beforePath="$PROJECT_DIR$/src/Elevator.java" afterPath="$PROJECT_DIR$/src/Elevator.java" />
-      <change beforePath="$PROJECT_DIR$/src/ElevatorManager.java" afterPath="$PROJECT_DIR$/src/ElevatorManager.java" />
-      <change beforePath="$PROJECT_DIR$/src/Home.java" afterPath="$PROJECT_DIR$/src/Home.java" />
-      <change beforePath="$PROJECT_DIR$/src/MainFX.java" afterPath="$PROJECT_DIR$/src/MainFX.java" />
-      <change beforePath="$PROJECT_DIR$/src/SpriteAnimation.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/horse.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/elevator.png" afterPath="$PROJECT_DIR$/src/img/elevator.png" />
+      <change beforePath="$PROJECT_DIR$/src/man.png" afterPath="$PROJECT_DIR$/src/img/man.png" />
+      <change beforePath="$PROJECT_DIR$/src/man2.png" afterPath="$PROJECT_DIR$/src/img/man2.png" />
+      <change beforePath="$PROJECT_DIR$/src/manwalk.png" afterPath="$PROJECT_DIR$/src/img/manwalk.png" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,8 +34,8 @@
       <file leaf-file-name="MainFX.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MainFX.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-298">
-              <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+            <state relative-caret-position="229">
+              <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#347#348#0" expanded="true" />
@@ -304,6 +301,12 @@
               <item name="Elevator" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Elevator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Elevator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -319,6 +322,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Defolter\IdeaProjects\Elevator\src\img" />
       <recent name="C:\Users\Defolter\IdeaProjects\Elevator\src" />
     </key>
   </component>
@@ -473,7 +477,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="916" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -484,7 +487,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329602" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29975125" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29975125" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329602" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1069,10 +1072,10 @@
           <caret line="133" column="0" lean-forward="false" selection-start-line="133" selection-start-column="0" selection-end-line="134" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1672#1673#0" expanded="true" />
-            <element signature="e#1759#1760#0" expanded="true" />
-            <element signature="e#1796#1797#0" expanded="true" />
-            <element signature="e#1828#1829#0" expanded="true" />
+            <element signature="e#1661#1662#0" expanded="true" />
+            <element signature="e#1748#1749#0" expanded="true" />
+            <element signature="e#1785#1786#0" expanded="true" />
+            <element signature="e#1817#1818#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1209,8 +1212,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MainFX.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-298">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        <state relative-caret-position="229">
+          <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#347#348#0" expanded="true" />
